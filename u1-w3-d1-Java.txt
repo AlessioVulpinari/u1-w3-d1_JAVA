@@ -37,3 +37,7 @@ SELECT EXTRACT (YEAR FROM data_fattura) anno FROM fatture  WHERE tipologia = 'A'
 EXTRA 2: 
 
 SELECT regione_di_residenza, SUM(importo) FROM fatture JOIN clienti ON fatture.id_cliente = clienti.id_cliente GROUP BY regione_di_residenza
+
+EXTRA 3:
+
+SELECT COUNT(*) FROM clienti JOIN fatture ON clienti.numero_cliente = fatture.id_cliente WHERE EXTRACT(YEAR FROM anno_di_nascita) = 1980 and importo > 50
