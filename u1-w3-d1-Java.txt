@@ -1,0 +1,39 @@
+EX 1:
+
+SELECT * FROM clienti WHERE nome = 'Mario'
+
+EX 2: 
+
+SELECT nome, cognome FROM clienti WHERE EXTRACT (YEAR FROM anno_di_nascita) = 1982
+
+EX 3: 
+
+SELECT id_fattura FROM fatture WHERE iva = 20
+
+EX 4: 
+
+SELECT * FROM prodotti WHERE EXTRACT (YEAR FROM data_attivazione) = 2017 AND (in_produzione = true OR in_commercio = true)
+
+EX 5:
+
+SELECT * FROM fatture JOIN clienti ON fatture.id_cliente = clienti.id_cliente WHERE importo < 1000
+
+EX 6: 
+
+SELECT id_fattura, importo, iva, data_fattura, denominazione  FROM fatture JOIN fornitori ON fatture.id_fornitore = fornitori.id_fornitore
+
+Ex 7: 
+
+SELECT EXTRACT (YEAR FROM  data_fattura) y , COUNT(*) FROM fatture where iva = 20 GROUP BY y
+
+Ex 8:
+
+SELECT EXTRACT (YEAR FROM  data_fattura) y , COUNT(*), SUM(importo) FROM fatture GROUP BY y
+
+EXTRA 1: 
+
+SELECT EXTRACT (YEAR FROM data_fattura) anno FROM fatture  WHERE tipologia = 'A' GROUP BY anno HAVING COUNT(*) >= 2
+
+EXTRA 2: 
+
+SELECT regione_di_residenza, SUM(importo) FROM fatture JOIN clienti ON fatture.id_cliente = clienti.id_cliente GROUP BY regione_di_residenza
